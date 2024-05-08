@@ -1,6 +1,7 @@
 package org.d3if0024.mobproassement.ui.screen
 
 import android.content.res.Configuration
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -58,7 +60,8 @@ fun MainScreen() {
 fun ScreenContent(modifier: Modifier){
     val viewModel : MainViewModel = viewModel()
     val data =  viewModel.data
-//    val data = emptyList<Pesanan>()
+    val context = LocalContext.current
+
 
     if (data.isEmpty()) {
         Column(
@@ -87,7 +90,8 @@ fun ScreenContent(modifier: Modifier){
         ) {
             items(data) {
                 ListItem(pesanan = it) {
-
+                val pesan = context.getString(R.string.x_diklik, it.size)
+                    Toast.makeText(context, pesan, Toast.LENGTH_SHORT).show()
                 }
                 Divider()
             }
