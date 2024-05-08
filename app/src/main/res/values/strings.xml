@@ -2,5 +2,7 @@
     <string name="app_name">Pemesanan Pizza</string>
     <string name="list_kosong">Belum ada pesanan</string>
     <string name="x_diklik">%1$s di klik</string>
+    <string name="tambah_pesanan">Tambah Pesanan</string>
+    <string name="tambah_error">belum bisa tambah pesanan</string>
 
 </resources>
