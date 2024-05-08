@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pemesanan Pizza</string>
+    <string name="list_kosong">Belum ada pesanan</string>
 </resources>
