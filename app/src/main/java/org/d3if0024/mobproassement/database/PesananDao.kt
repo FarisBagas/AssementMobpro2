@@ -16,4 +16,7 @@ interface PesananDao {
     @Query("SELECT * FROM pesanan ORDER BY size ASC ")
     fun getPesanan(): Flow<List<Pesanan>>
 
+    @Query("SELECT * FROM pesanan WHERE id = :id")
+    suspend fun getPesananById(id: Long):Pesanan?
+
 }

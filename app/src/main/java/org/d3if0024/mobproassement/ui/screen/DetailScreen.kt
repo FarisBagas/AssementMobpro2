@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -79,13 +80,12 @@ fun DetailScreen(navController: NavHostController, id:Long? = null) {
     var pilihanToping by rememberSaveable { mutableStateOf(toppingOption[0]) }
     var pilihanDrink by rememberSaveable { mutableStateOf(drinkOption[0]) }
 
-    if (id != null){
-        val data = viewModel.getPesanan(id)
+    LaunchedEffect(true) {
+        if (id == null) return@LaunchedEffect
+        val data = viewModel.getPesanan(id) ?: return@LaunchedEffect
         pilihanSize = data.size
         pilihanToping = data.topping
         pilihanDrink = data.drink
-
-
     }
 
     Scaffold(
@@ -114,6 +114,8 @@ fun DetailScreen(navController: NavHostController, id:Long? = null) {
                 actions = {
                     IconButton(onClick = {
                         if (id == null){
+                            viewModel.insert(pilihanSize,pilihanToping,pilihanDrink)
+                        } else {
                             viewModel.insert(pilihanSize,pilihanToping,pilihanDrink)
                         }
                         navController.popBackStack()
