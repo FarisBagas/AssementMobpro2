@@ -12,7 +12,7 @@
     <string name="simpan">Simpan</string>
     <string name="kembali">Kembali</string>
 
-<!--    size pizza-->
+<!--size pizza-->
     <string name="small">Kecil</string>
     <string name="reguler">Reguler</string>
     <string name="large">Besar</string>
@@ -24,15 +24,16 @@
     <string name="seafood">Seafood</string>
     <string name="sayuran">Sayuran</string>
 
-<!--    drink pizza-->
+<!--drink pizza-->
     <string name="cola">Cola</string>
     <string name="tea">Tea</string>
     <string name="milo">Milo</string>
     <string name="juice">Jus</string>
 
-<!--    hapus-->
+<!--hapus-->
     <string name="hapus">Hapus Pesanan</string>
     <string name="opsi_lainnya">Lainnya</string>
 
-
+<!--Sanity cek-->
+    <string name="invalid">Nama tidak Boleh Kosong</string>
 </resources>

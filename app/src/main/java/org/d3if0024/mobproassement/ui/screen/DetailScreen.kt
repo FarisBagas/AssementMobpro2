@@ -1,6 +1,7 @@
 package org.d3if0024.mobproassement.ui.screen
 
 import android.content.res.Configuration
+import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -126,6 +127,10 @@ fun DetailScreen(navController: NavHostController, id:Long? = null) {
                 ),
                 actions = {
                     IconButton(onClick = {
+                        if (nama == ""  ){
+                            Toast.makeText(context,R.string.invalid, Toast.LENGTH_LONG).show()
+                            return@IconButton
+                        }
                         if (id == null){
                             viewModel.insert(nama,pilihanSize,pilihanToping,pilihanDrink)
                         } else {
