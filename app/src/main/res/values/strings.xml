@@ -30,6 +30,9 @@
     <string name="milo">Milo</string>
     <string name="juice">Jus</string>
 
+<!--    hapus-->
+    <string name="hapus">Hapus Pesanan</string>
+    <string name="opsi_lainnya">Lainnya</string>
 
 
 </resources>

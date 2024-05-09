@@ -12,6 +12,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -126,6 +130,12 @@ fun DetailScreen(navController: NavHostController, id:Long? = null) {
                             tint = MaterialTheme.colorScheme.primary
                         )
                     }
+                    if (id != null){
+                        DeleteAction {
+                            viewModel.delete(id)
+                            navController.popBackStack()
+                        }
+                    }
                 }
             )
         }
@@ -144,6 +154,31 @@ fun DetailScreen(navController: NavHostController, id:Long? = null) {
         )
     }
 }
+
+@Composable
+fun DeleteAction(delete:()->Unit ){
+    var expanded by remember { mutableStateOf(false) }
+
+    IconButton(onClick = {expanded = true}) {
+        Icon(
+            imageVector = Icons.Filled.MoreVert ,
+            contentDescription = stringResource(R.string.opsi_lainnya),
+            tint = MaterialTheme.colorScheme.primary
+        )
+        DropdownMenu(
+            expanded = expanded ,
+            onDismissRequest = { expanded = false}
+        ) {
+            DropdownMenuItem(text = { Text(text = stringResource(R.string.hapus))},
+                onClick = {
+                    expanded = false
+                    delete()
+                }
+            )
+        }
+    }
+}
+
 
 @Composable
 fun FormPesanan(
