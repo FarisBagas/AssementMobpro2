@@ -28,6 +28,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,12 +37,18 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.d3if0024.mobproassement.R
+import org.d3if0024.mobproassement.database.PesananDb
 import org.d3if0024.mobproassement.ui.theme.MobproAssesment2Theme
+import org.d3if0024.mobproassement.util.ViewModelFactory
+
 const val KEY_ID_PESANAN ="idPesanan"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(navController: NavHostController, id:Long? = null) {
-val viewModel: DetailViewModel = viewModel()
+    val context = LocalContext.current
+    val db = PesananDb.getInstance(context)
+    val factory = ViewModelFactory(db.dao)
+    val viewModel: DetailViewModel = viewModel(factory = factory)
 
     // daftar pilihan size
     val sizeOption = listOf(
@@ -105,7 +112,12 @@ val viewModel: DetailViewModel = viewModel()
                     titleContentColor = MaterialTheme.colorScheme.primary
                 ),
                 actions = {
-                    IconButton(onClick = { navController.popBackStack()}) {
+                    IconButton(onClick = {
+                        if (id == null){
+                            viewModel.insert(pilihanSize,pilihanToping,pilihanDrink)
+                        }
+                        navController.popBackStack()
+                    }) {
                         Icon(
                             imageVector = Icons.Filled.Check,
                             contentDescription = stringResource(id = R.string.simpan),
@@ -147,6 +159,7 @@ fun FormPesanan(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+
         // row Size
         Row(
             modifier = Modifier

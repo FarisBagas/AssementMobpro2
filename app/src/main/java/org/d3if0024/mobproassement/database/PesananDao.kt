@@ -13,7 +13,7 @@ interface PesananDao {
 
     @Update
     suspend fun update(pesanan: Pesanan)
-    @Query("SELECT * FROM pesanan ORDER by size,topping,drink ASC ")
+    @Query("SELECT * FROM pesanan ORDER BY size ASC ")
     fun getPesanan(): Flow<List<Pesanan>>
 
 }
