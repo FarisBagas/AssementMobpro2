@@ -4,5 +4,28 @@
     <string name="x_diklik">%1$s di klik</string>
     <string name="tambah_pesanan">Tambah Pesanan</string>
     <string name="tambah_error">belum bisa tambah pesanan</string>
+    <string name="size">Size pizza </string>
+    <string name="topping">Topping Pizza</string>
+    <string name="drink">Minuman</string>
+
+<!--    size pizza-->
+    <string name="small">Kecil</string>
+    <string name="reguler">Sedang</string>
+    <string name="large">Besar</string>
+
+<!--topping pizza-->
+    <string name="keju">Keju</string>
+    <string name="daging">Daging</string>
+    <string name="pepperoni">Pepperoni</string>
+    <string name="seafood">Seafood</string>
+    <string name="sayuran">Sayuran</string>
+
+<!--    drink pizza-->
+    <string name="cola">Cola</string>
+    <string name="tea">Tea</string>
+    <string name="milo">Milo</string>
+    <string name="juice">Jus</string>
+
+
 
 </resources>
