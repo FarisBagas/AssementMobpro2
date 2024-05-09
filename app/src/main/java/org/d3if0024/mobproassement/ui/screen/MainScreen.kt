@@ -35,15 +35,19 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import org.d3if0024.mobproassement.R
 import org.d3if0024.mobproassement.model.Pesanan
+import org.d3if0024.mobproassement.navigation.Screen
 import org.d3if0024.mobproassement.ui.theme.MobproAssesment2Theme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavHostController) {
 
-    val context = LocalContext.current
+
 
     Scaffold (
         topBar = {
@@ -58,7 +62,7 @@ fun MainScreen() {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { Toast.makeText(context, R.string.tambah_error,Toast.LENGTH_SHORT).show() }
+                onClick = { navController.navigate(Screen.FormBaru.route) }
             ) {
             Icon(
                 imageVector = Icons.Filled.Add,
@@ -154,6 +158,6 @@ fun ListItem(pesanan: Pesanan, onClick: () -> Unit ){
 @Composable
 fun ScreenPreview(){
     MobproAssesment2Theme {
-        MainScreen()
+        MainScreen(rememberNavController())
     }
 }

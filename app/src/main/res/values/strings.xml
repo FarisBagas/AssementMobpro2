@@ -3,10 +3,12 @@
     <string name="list_kosong">Belum ada pesanan</string>
     <string name="x_diklik">%1$s di klik</string>
     <string name="tambah_pesanan">Tambah Pesanan</string>
-    <string name="tambah_error">belum bisa tambah pesanan</string>
     <string name="size">Size pizza </string>
     <string name="topping">Topping Pizza</string>
     <string name="drink">Minuman</string>
+
+    <string name="simpan">Simpan</string>
+    <string name="kembali">Kembali</string>
 
 <!--    size pizza-->
     <string name="small">Kecil</string>
