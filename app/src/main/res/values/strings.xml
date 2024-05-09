@@ -13,7 +13,7 @@
 
 <!--    size pizza-->
     <string name="small">Kecil</string>
-    <string name="reguler">Sedang</string>
+    <string name="reguler">Reguler</string>
     <string name="large">Besar</string>
 
 <!--topping pizza-->

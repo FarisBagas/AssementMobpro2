@@ -32,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.d3if0024.mobproassement.R
@@ -40,6 +41,7 @@ const val KEY_ID_PESANAN ="idPesanan"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(navController: NavHostController, id:Long? = null) {
+val viewModel: DetailViewModel = viewModel()
 
     // daftar pilihan size
     val sizeOption = listOf(
@@ -66,10 +68,18 @@ fun DetailScreen(navController: NavHostController, id:Long? = null) {
     )
 
     // var simpan data
-    var pilihanSize by rememberSaveable { mutableStateOf("") }
-    var pilihanToping by rememberSaveable { mutableStateOf("") }
-    var pilihanDrink by rememberSaveable { mutableStateOf("") }
+    var pilihanSize by rememberSaveable { mutableStateOf(sizeOption[0]) }
+    var pilihanToping by rememberSaveable { mutableStateOf(toppingOption[0]) }
+    var pilihanDrink by rememberSaveable { mutableStateOf(drinkOption[0]) }
 
+    if (id != null){
+        val data = viewModel.getPesanan(id)
+        pilihanSize = data.size
+        pilihanToping = data.topping
+        pilihanDrink = data.drink
+
+
+    }
 
     Scaffold(
         topBar = {

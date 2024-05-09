@@ -13,8 +13,8 @@ import org.d3if0024.mobproassement.model.Pesanan
                     Pesanan(
                         i.toLong(),
                         "Reguler",
-                        "Smoke Beef",
-                        "Soda"
+                        "Daging",
+                        "Cola"
                     )
                 )
             }
