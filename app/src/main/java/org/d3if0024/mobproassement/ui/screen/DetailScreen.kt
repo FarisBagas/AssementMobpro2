@@ -36,10 +36,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.d3if0024.mobproassement.R
 import org.d3if0024.mobproassement.ui.theme.MobproAssesment2Theme
-
+const val KEY_ID_PESANAN ="idPesanan"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(navController: NavHostController) {
+fun DetailScreen(navController: NavHostController, id:Long? = null) {
 
     // daftar pilihan size
     val sizeOption = listOf(
@@ -84,7 +84,11 @@ fun DetailScreen(navController: NavHostController) {
                 }
             },
                 title = {
-                    Text(text = stringResource(id = R.string.tambah_pesanan))
+                    if (id == null)
+                        Text(text = stringResource(id = R.string.tambah_pesanan))
+                    else
+                        Text(text = stringResource(id = R.string.ubah_pesanan))
+
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
