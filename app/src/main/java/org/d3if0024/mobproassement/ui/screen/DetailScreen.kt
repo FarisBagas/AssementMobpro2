@@ -221,7 +221,10 @@ fun FormPesanan(
             ),
             modifier=Modifier.fillMaxWidth()
         )
+Column {
 
+
+        Text(text = stringResource(id = R.string.size))
         // row Size
         Row(
             modifier = Modifier
@@ -229,6 +232,7 @@ fun FormPesanan(
                 .fillMaxWidth()
                 .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
         ) {
+
             radioOptionSize.forEach { option ->
                 RedioOption(
                     label = option,
@@ -243,7 +247,10 @@ fun FormPesanan(
                 )
             }
         }
+}
         // kolom Toping
+        Column {
+        Text(text = stringResource(id = R.string.topping))
         Column (
             modifier = Modifier
                 .padding(top = 6.dp)
@@ -264,7 +271,12 @@ fun FormPesanan(
                 )
             }
         }
+        }
         // row Minuman
+        Column {
+
+            Text(text = stringResource(id = R.string.drink))
+
         Row (
             modifier = Modifier
                 .padding(top = 6.dp)
@@ -282,7 +294,8 @@ fun FormPesanan(
                             role = Role.RadioButton
                         )
                         .padding(8.dp)
-                )
+                    )
+                }
             }
         }
     }
