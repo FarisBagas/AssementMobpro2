@@ -135,6 +135,13 @@ fun ListItem(pesanan: Pesanan, onClick: () -> Unit ){
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
+
+        Text(
+            text = pesanan.nama,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            fontWeight = FontWeight.Bold
+        )
         Text(
             text = pesanan.size,
             maxLines = 1,
@@ -143,7 +150,7 @@ fun ListItem(pesanan: Pesanan, onClick: () -> Unit ){
         )
         Text(
             text = pesanan.topping,
-            maxLines = 2,
+            maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
         Text(

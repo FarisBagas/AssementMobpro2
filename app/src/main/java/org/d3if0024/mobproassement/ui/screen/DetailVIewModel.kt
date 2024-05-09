@@ -10,8 +10,9 @@ import org.d3if0024.mobproassement.model.Pesanan
 
 class DetailViewModel(private val dao: PesananDao) : ViewModel() {
 
-    fun insert(size: String, topping: String, drink: String) {
+    fun insert(nama: String, size: String, topping: String, drink: String) {
         val pesanan = Pesanan(
+            nama = nama,
             size = size,
             topping = topping,
             drink = drink
@@ -25,12 +26,12 @@ class DetailViewModel(private val dao: PesananDao) : ViewModel() {
         return dao.getPesananById(id)
     }
 
-    fun update(id: Long, size: String, topping: String, drink: String) {
+    fun update(id: Long, nama: String, size: String, topping: String, drink: String) {
         val pesanan = Pesanan(
-            id, size, topping, drink
+            id, nama, size, topping, drink
         )
         viewModelScope.launch(Dispatchers.IO) {
-            dao.insert(pesanan)
+            dao.update(pesanan)
         }
 
     }

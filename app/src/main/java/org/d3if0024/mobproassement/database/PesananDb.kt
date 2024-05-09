@@ -24,7 +24,7 @@ import org.d3if0024.mobproassement.model.Pesanan
                         instance = Room.databaseBuilder(
                             context.applicationContext,
                             PesananDb::class.java,
-                            "pesanan.db"
+                            "pesanan_1.db"
                         ).build()
                         INSTANCE = instance
                     }

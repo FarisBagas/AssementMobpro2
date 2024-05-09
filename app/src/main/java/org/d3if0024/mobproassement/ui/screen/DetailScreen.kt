@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
@@ -19,6 +20,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -36,6 +38,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -54,6 +58,10 @@ fun DetailScreen(navController: NavHostController, id:Long? = null) {
     val db = PesananDb.getInstance(context)
     val factory = ViewModelFactory(db.dao)
     val viewModel: DetailViewModel = viewModel(factory = factory)
+
+    var nama by remember {
+        mutableStateOf("")
+    }
 
     // daftar pilihan size
     val sizeOption = listOf(
@@ -87,6 +95,7 @@ fun DetailScreen(navController: NavHostController, id:Long? = null) {
     LaunchedEffect(true) {
         if (id == null) return@LaunchedEffect
         val data = viewModel.getPesanan(id) ?: return@LaunchedEffect
+       nama = data.nama
         pilihanSize = data.size
         pilihanToping = data.topping
         pilihanDrink = data.drink
@@ -118,9 +127,9 @@ fun DetailScreen(navController: NavHostController, id:Long? = null) {
                 actions = {
                     IconButton(onClick = {
                         if (id == null){
-                            viewModel.insert(pilihanSize,pilihanToping,pilihanDrink)
+                            viewModel.insert(nama,pilihanSize,pilihanToping,pilihanDrink)
                         } else {
-                            viewModel.insert(pilihanSize,pilihanToping,pilihanDrink)
+                            viewModel.update(id,nama,pilihanSize,pilihanToping,pilihanDrink)
                         }
                         navController.popBackStack()
                     }) {
@@ -141,6 +150,8 @@ fun DetailScreen(navController: NavHostController, id:Long? = null) {
         }
     ) { padding ->
         FormPesanan(
+            title = nama,
+            onTitleChange = {nama = it},
             pilihanSize = pilihanSize,
             pilihanSizeChange = { pilihanSize = it },
             pilihanToping = pilihanToping,
@@ -182,6 +193,7 @@ fun DeleteAction(delete:()->Unit ){
 
 @Composable
 fun FormPesanan(
+    title:String,onTitleChange:(String)-> Unit,
     pilihanSize: String, pilihanSizeChange: (String) -> Unit,
     pilihanToping: String, pilihanTopingChange: (String) -> Unit,
     pilihanDrink: String, pilihanDrinkChange: (String) -> Unit,
@@ -196,6 +208,19 @@ fun FormPesanan(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+
+        //nama Pelanggan
+        OutlinedTextField(
+            value = title,
+            onValueChange = {onTitleChange(it)},
+            singleLine = true,
+            label = { Text(text = stringResource(id = R.string.nama))},
+            keyboardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.Words,
+                imeAction = ImeAction.Done
+            ),
+            modifier=Modifier.fillMaxWidth()
+        )
 
         // row Size
         Row(
