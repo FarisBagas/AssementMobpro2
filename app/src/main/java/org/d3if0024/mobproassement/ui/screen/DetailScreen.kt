@@ -60,9 +60,9 @@ fun DetailScreen(navController: NavHostController, id:Long? = null) {
     val factory = ViewModelFactory(db.dao)
     val viewModel: DetailViewModel = viewModel(factory = factory)
 
-    var nama by remember {
-        mutableStateOf("")
-    }
+    var nama by remember { mutableStateOf("") }
+
+    var showDialog by remember { mutableStateOf(false) }
 
     // daftar pilihan size
     val sizeOption = listOf(
@@ -145,7 +145,11 @@ fun DetailScreen(navController: NavHostController, id:Long? = null) {
                         )
                     }
                     if (id != null){
-                        DeleteAction {
+                        DeleteAction {showDialog = true}
+                        DisplayAlertDialog(
+                            openDialog = showDialog,
+                            onDismissRequest = {showDialog = false}) {
+                            showDialog = false
                             viewModel.delete(id)
                             navController.popBackStack()
                         }

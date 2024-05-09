@@ -36,4 +36,9 @@
 
 <!--Sanity cek-->
     <string name="invalid">Nama tidak Boleh Kosong</string>
+
+<!--Dialog Hapus-->
+    <string name="pesan_hapus">Hapus Pesanan ini?</string>
+    <string name="tombol_hapus">Hapus</string>
+    <string name="tombol_batal">Batal</string>
 </resources>
