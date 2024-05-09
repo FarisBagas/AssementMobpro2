@@ -137,26 +137,28 @@ fun ListItem(pesanan: Pesanan, onClick: () -> Unit ){
     ) {
 
         Text(
-            text = pesanan.nama,
+            text = stringResource(id = R.string.nama)+ ": " + pesanan.nama,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             fontWeight = FontWeight.Bold
         )
         Text(
-            text = pesanan.size,
+            text = stringResource(id = R.string.size)+ ": " + pesanan.size,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             fontWeight = FontWeight.Bold
         )
         Text(
-            text = pesanan.topping,
+            text =stringResource(id = R.string.topping)+ ": " + pesanan.topping,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
+            fontWeight = FontWeight.Bold
         )
         Text(
-            text = pesanan.drink,
+            text = stringResource(id = R.string.drink)+ ": " +pesanan.drink,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
+            fontWeight = FontWeight.Bold
         )
 
     }
